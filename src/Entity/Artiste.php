@@ -92,7 +92,7 @@ class Artiste
     {
         $this->site = $site;
 
-        return $this
+        return $this;
     }
 
     public function getImage(): ?string
