@@ -14,7 +14,7 @@ class Artiste
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -63,7 +63,12 @@ class Artiste
     {
         return $this->nom;
     }
+    public function setId(string $id): self
+    {
+        $this->id = $id;
 
+        return $this;
+    }
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
