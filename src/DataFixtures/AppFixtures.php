@@ -31,30 +31,30 @@ $genres=["men","women"];
               $manager->persist($artiste);
             $this->addReference("artiste".$artiste->getId(),$artiste);
         }
-        $lesAlbums=$this->chargeFichier("album.csv");
-        $manager->flush();
-        foreach ($lesAlbums as $key => $value) {
-            $album=new Album();
-            $album  ->setId(intval($value[0]))
-                    ->setNom($value[1])
-                    ->setDate(intval($value[2]))
-                    ->setImage($faker->imageUrl(640,480))
-                    ->setArtiste($this->getReference("artiste".$value[4]));
-                    $manager->persist($album);
-                    $this->addReference("album".$album->getId(), $album);
-        }
+            $lesAlbums=$this->chargeFichier("album.csv");
+            $manager->flush();
+            foreach ($lesAlbums as $key => $value) {
+                $album=new Album();
+                $album  ->setId(intval($value[0]))
+                        ->setNom($value[1])
+                        ->setDate(intval($value[2]))
+                        ->setImage($faker->imageUrl(640,480))
+                        ->setArtiste($this->getReference("artiste".$value[4]));
+                        $manager->persist($album);
+                        $this->addReference("album".$album->getId(), $album);
+            }
 
-        $lesMorceaux=$this->chargeFichier("morceau.csv");
-        foreach ($lesMorceaux as $key => $value) {
-            $morceau=new Morceau();
-            $morceau  ->setId(intval($value[0]))
-                    ->setTitre($value[2])
-                    ->setAlbum($this->getReference("album".$value[1]))
-                    ->setDuree(date("i:s",$value[3]));
-                    $manager->persist($morceau);
-                    $this->addReference("morceau".$morceau->getId(), $morceau);
-        }
-        $manager->flush();
+            $lesMorceaux=$this->chargeFichier("morceau.csv");
+            foreach ($lesMorceaux as $key => $value) {
+                $morceau=new Morceau();
+                $morceau  ->setId(intval($value[0]))
+                        ->setTitre($value[2])
+                        ->setAlbum($this->getReference("album".$value[1]))
+                        ->setDuree(date("i:s",$value[3]));
+                        $manager->persist($morceau);
+                        $this->addReference("morceau".$morceau->getId(), $morceau);
+            }
+            $manager->flush();
 
     }
     public function chargeFichier($fichier){
