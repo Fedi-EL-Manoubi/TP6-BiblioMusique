@@ -21,12 +21,11 @@
             <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
         </svg>
         <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="card-text"> {{leArtiste.description}} </p>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
+            <li class="list-group-item"> {% if leArtiste.type == 0 %}  Artiste solo {% else %} Groupe{% endif %} </li>
+            <li class="list-group-item"> {{leArtiste.site}} </li>
         </ul>
         <div class="card-body">
             <a href="#" class="card-link">Card link</a>
