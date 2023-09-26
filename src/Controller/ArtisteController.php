@@ -11,13 +11,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class ArtisteController extends AbstractController
 {
     /**
-     * @Route("/artistes", name="artiste", methods={"GET"})
+     * @Route("/artistes", name="artistes", methods={"GET"})
      */
     public function listeArtistes(ArtisteRepository $repo)
     {
         $artistes=$repo->findAll();
         return $this->render('artiste/listeArtistes.html.twig', [
             'lesArtistes' => $artistes
+        ]);
+    }
+
+        /**
+     * @Route("/artiste/{id}", name="ficheArtiste", methods={"GET"})
+     */
+    public function ficheArtiste(artiste $artiste)
+    {
+        return $this->render('artiste/ficheArtiste.html.twig', [
+            'leArtiste' => $artiste
         ]);
     }
 }

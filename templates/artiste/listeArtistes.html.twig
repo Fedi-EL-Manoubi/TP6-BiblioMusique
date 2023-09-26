@@ -8,24 +8,23 @@
 <div class="row pt-2">
 {% for leArtiste in lesArtistes %}
     {% set nbAlbums  = leArtiste.albums|length %}
-    <div class="col-sm-12 col-md-12 col-lg-4.col-xl-3">
+    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
         <div class="card mb-3">
-        <h3 class="card-header">  {{leArtiste.nom}} </h3>
+        <h3 class="card-header"> <a href=" {{path('ficheArtiste', {'id': leArtiste.id})}} ">{{leArtiste.nom}} </a>  </h3>
         <div class="card-body">
             <h5 class="card-title">
-                <a href="" class="badge badge-succes"> {{nbAlbums}}  {% if nbAlbums> 1 %}    albums {% else %} album {% endif %}</a> 
+                <a href="" class="badge badge-success"> {{nbAlbums}}  {% if nbAlbums> 1 %}    albums {% else %} album {% endif %}</a> 
                </h5> 
             </div>
-        <svg xmlns="http://www.w3.org/2000/svg" class="d-block user-select-none" width="100%" height="200" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:1.125rem;text-anchor:middle">
-            <rect width="100%" height="100%" fill="#868e96"></rect>
-            <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
-        </svg>
+            <img class="avatar mx-auto d-block " style="height:auto; width: 200px 100%; display: block;" src=" {{leArtiste.image}} " alt="Card image">
+ 
+        
         <div class="card-body">
-            <p class="card-text"> {{leArtiste.description}} </p>
+            <p class="card-text"> {{leArtiste.description|slice(0,200)|raw}}... </p>
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item"> {% if leArtiste.type == 0 %}  Artiste solo {% else %} Groupe{% endif %} </li>
-            <li class="list-group-item"> {{leArtiste.site}} </li>
+            <li class="list-group-item"> <a href="{{leArtiste.site}}">Son Site Web </a> </li>
         </ul>
         <div class="card-body">
             <a href="#" class="card-link">Card link</a>
