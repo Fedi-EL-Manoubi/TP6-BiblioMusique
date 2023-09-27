@@ -26,7 +26,7 @@ $genres=["men","women"];
                             ->setNom($value[1])
                             ->setDescription("<p>". join("</p><p>",$faker->paragraphs(5)) ."</p>")
                             ->setSite($faker->url())
-                            ->setImage('https://randomuser.me/api/portaits/'.$faker->randomElement($genres)."/".mt_rand(1,99).".jpg")
+                            ->setImage('https://randomuser.me/api/portraits/'.$faker->randomElement($genres)."/".mt_rand(1,99).".jpg")
                             ->setType($value[2]);
               $manager->persist($artiste);
             $this->addReference("artiste".$artiste->getId(),$artiste);
