@@ -18,7 +18,7 @@
             <h5 class="card-title">
                 <a href="" class="badge badge-success"> {{nbAlbums}}  {% if nbAlbums> 1 %}    albums {% else %} album {% endif %}</a> 
         <div class="card-body">
-            <p class="card-text"> {{leArtiste.description|raw}}... </p>
+            <p class="card-text"> {{leArtiste.description|raw}} </p>
         </div>
         <ul class="list-group list-group-flush">
             <li class="list-group-item"> {% if leArtiste.type == 0 %}  Artiste solo {% else %} Groupe{% endif %} </li>

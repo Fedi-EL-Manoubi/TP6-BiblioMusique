@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche Album !{% endblock %}
+
+{% block body %}
+<h1 class="pt-2 text-center">Fiche de L'album </h1>
+<hr>
+<div class="row pt-2">
+    {% set nbAlbums  = leAlbum.albums|length %}
+        <div class="card mb-3">
+        <h3 class="card-header">  {{leAlbum.nom}} </h3>
+        <div class="row">
+            <div class="col-3 d-flex align-items-center mx-auto">  
+            <img class="avatar mx-auto d-block " style="height:auto; width: 200px 100%; display: block;" src=" {{leAlbum.image}} " alt="Card image">
+             </div>
+            <div class="col">
+        <div class="card-body">
+            <h5 class="card-title">
+                <a href="" class="badge badge-success"> {{leAlbum.artiste.nom}} </a> 
+            </h5>
+                <p class="card-text"> {{leAlbum.date|raw}} </p>
+     
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">  
+                            {% for leStyle in leAlbum.styles %}
+                    <span class="badge" style="bacground-color: {{leStyle.couleur}};"> {{leStyle.nom}} </span>
+                {% endfor %}
+            </li>
+                        {{nb}} {% if nb>1 %} morceaux {% else %}  morceau {% endif %}
+             </li>
+                </ul>
+            </div>
+        </div>
+     
+</div>
+        <div class="card-footer text-muted">
+            2 days ago
+              </div>
+         </div>
+    </div>
+
+
+
+
+<table class="table table-hover mx-auto">
+  <thead>
+    <tr>
+      <th scope="col-3">Piste</th>
+      <th scope="col-4">Titre</th>
+      <th scope="col-1">Durée</th>
+      <th scope="col-3">note</th>
+    </tr>
+  </thead>
+  {% for leMorceau in leAlbum.morceaux %}
+    <tr class="table-primary">
+      <td scope="row"> {{leMorceau.piste}} </th>
+      <td> {{leMorceau.titre}} </td>
+      <td> {{leMorceau.duree}} </td>
+        </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+
+</div>
+{% endblock %}

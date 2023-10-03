@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des albums  !{% endblock %}
+
+{% block body %}
+<h1 class="pt-2 text-center">Liste des albums </h1>
+<hr>
+<div class="row pt-2">
+{% for leAlbum in lesAlbums %}
+    <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+        <div class="card mb-3">
+        <h3 class="card-header"> <a href=" {{path('ficheAlbum', {'id': leAlbum.id})}} ">{{leAlbum.nom}} </a>  </h3>
+        <div class="card-body">
+            <h5 class="card-title">
+                <a href=" {{path('ficheArtiste', {'id' : leAlbum.artiste.id})}} " class="badge badge-success"> {{leAlbum.artiste.nom}} </a> 
+               </h5> 
+            </div>
+            <img class="avatar mx-auto d-block " style="height:auto; width: 200px 100%; display: block;" src=" {{leAlbum.image}} " alt="Card image">
+ 
+        
+        <div class="card-body">
+            <p class="card-text"> {{leAlbum.date}} </p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"> 
+                {% for leStyle in leAlbum.styles %}
+                    <span class="badge" style="bacground-color: {{leStyle.couleur}};"> {{leStyle.nom}} </span>
+                {% endfor %}
+            </li>
+            {% set nb = leAlbum.morceaux| length %}
+
+            <li class="list-group-item"> 
+            {{nb}} {% if nb>1 %} morceaux {% else %}  morceau {% endif %}
+             </li>
+        </ul>
+        <div class="card-body">
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+        </div>
+        <div class="card-footer text-muted">
+            2 days ago
+              </div>
+         </div>
+    </div>
+
+{% endfor %}
+
+
+</div>
+{% endblock %}
