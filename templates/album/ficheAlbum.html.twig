@@ -26,16 +26,13 @@
             </li>
                        {% set nb = leAlbum.morceaux | length %}
                         {{nb}} {% if nb>1 %} morceaux {% else %}  morceau {% endif %}
-             </li>
+                 </li>
                 </ul>
+              </div>   
             </div>
-        </div>
-    
-        <div class="card-footer text-muted">
-            2 days ago
-              </div>
-         </div>
-    </div>
+
+          </div>
+      </div>
 
 
 
@@ -51,7 +48,7 @@
   </thead>
   {% for leMorceau in leAlbum.morceaux %}
     <tr class="table-primary">
-      <td scope="row">  </th>
+      <td scope="row"> {{leMorceau.piste}} </td>
       <td> {{leMorceau.titre}} </td>
       <td> {{leMorceau.duree}} </td>
         </tr>

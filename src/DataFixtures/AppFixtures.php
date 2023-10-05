@@ -63,6 +63,7 @@ $genres=["men","women"];
                 $morceau  ->setId(intval($value[0]))
                         ->setTitre($value[2])
                         ->setAlbum($this->getReference("album".$value[1]))
+                        ->setPiste(intval($value[4]))
                         ->setDuree(date("i:s",$value[3]));
                         $manager->persist($morceau);
                         $this->addReference("morceau".$morceau->getId(), $morceau);

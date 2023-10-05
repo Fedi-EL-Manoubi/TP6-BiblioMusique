@@ -33,6 +33,11 @@ class Morceau
      */
     private $album;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $piste;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +80,18 @@ class Morceau
     public function setAlbum(?Album $album): self
     {
         $this->album = $album;
+
+        return $this;
+    }
+
+    public function getPiste(): ?int
+    {
+        return $this->piste;
+    }
+
+    public function setPiste(int $piste): self
+    {
+        $this->piste = $piste;
 
         return $this;
     }
