@@ -39,20 +39,20 @@ class ArtisteRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Artiste[] Returns an array of Artiste objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Artiste[] Returns an array of Artiste objects
+    */
+
+   public function listeArtistesComplete()
+   {
+       return $this->createQueryBuilder('art')
+            ->select('art','a')
+            ->innerJoin('art.albums','a')
+            ->orderBy('a.nom', 'ASC')
+            ->getQuery()
+            ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Artiste
 //    {
