@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}GESTION ARTISTES !{% endblock %}
+
+{% block body %}
+<h1 class="pt-2 text-center">Gestion des Artistes </h1>
+<hr>
+  <thead>
+    <tr>
+    <table class="table table-hover">
+      <th scope="col-1"></th>
+      <th scope="col-2">Nom</th>
+      <th scope="col-7">Detail</th>
+      <th scope="col-2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+
+        {% for leArtiste in lesArtistes %}
+            {% set nbAlbums  = leArtiste.albums|length %}
+            <tr>
+            <td class="col-1"><img class="avatar mx-auto d-block " style="height:auto; width: 100px 100%; display: block;" src=" {{leArtiste.image}} " alt="Card image"></td>
+            <td class="col-2">{{leArtiste.nom}}</td>
+            <td class="col-7">
+            <p class= "d-flex flex-row"> 
+                <span class="align-self-center badge badge-success"> {{nbAlbums}}{% if nbAlbums> 1 %}    albums {% else %} album {% endif %} </span>
+                <span class="align-self-center mx-3"> {% if leArtiste.type == 0 %}  Artiste solo {% else %} Groupe{% endif %} </span>
+                <span class="align-self-center ml-auto"> {{leArtiste.site}} </span>
+            </p>
+            <p>
+            {{leArtiste.description|slice(0,100)|raw}}... 
+            </p>
+            </td>
+            <td class="col-2">
+                <a href="" class="btn btn-primary" > <i class="fas fa-pen"></i> </a>
+
+            </td>
+            </tr>
+
+        {% endfor %}
+  </tbody>
+</table>
+                <div class="navigation" align="center">
+                {{ knp_pagination_render(lesArtistes) }}
+                </div>
+
+
+
+</div>
+{% endblock %}

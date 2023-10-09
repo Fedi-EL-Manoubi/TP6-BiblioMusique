@@ -8,6 +8,7 @@
 
         <link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
         <link rel="stylesheet" href=" {{asset('css/app.css')}} ">
+        <script src="https://kit.fontawesome.com/40e99d708b.js" crossorigin="anonymous"></script>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}  {% endblock %}
     </head>
@@ -24,14 +25,18 @@
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion des artistes</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href=" {{path('artistes')}} ">Liste des artistes</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">ajouter un artistes</a>
         </div>
       </li>
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Gestion des albumes</a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href=" {{path('albums')}} ">Liste des albumes</a>
+          </div>
+      </li>
+          <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> Administration </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href=" {{path('admin_artistes')}} ">Gestion des  artistes</a>
           </div>
       </li>
   </ul>
