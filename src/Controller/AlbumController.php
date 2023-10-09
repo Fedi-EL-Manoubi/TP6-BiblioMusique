@@ -23,7 +23,7 @@ class AlbumController extends AbstractController
             9 /*limit per page*/
         );
         return $this->render('album/listeAlbums.html.twig', [
-            'lesAlbums' => $albums
+            'lesAlbums' => $albums 
         ]);
     }
 
