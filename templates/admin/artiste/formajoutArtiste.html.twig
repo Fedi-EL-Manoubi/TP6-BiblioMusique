@@ -1,29 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Ajout Artiste !{% endblock %}
+{% block title %}Ajout Artiste !{% endblock %}
 
 {% block body %}
-<h1 class="pt-2 text center">Ajour d'un Artistes </h1>
+    <h1 class="pt-2 text-center">Ajout d'un Artiste</h1>
 
+    {{ form_start(formArtiste) }}
 
-{{form_start(formArtiste)}}
+    {{ form_row(formArtiste.nom) }}
+    {{ form_row(formArtiste.description) }}
 
-{{form_row(formArtiste.nom, )}}
-{{form_row(formArtiste.description)}}
-<div class="row">
-<div class="col"> {{form_row(formArtiste.site)}} </div>
-<div class="col"> {{form_row(formArtiste.type)}} </div>
-</div>
+    <div class="row">
+        <div class="col">{{ form_row(formArtiste.site) }}</div>
+        <div class="col">{{ form_row(formArtiste.type, {'attr': {'style': 'width: 100%;'}}) }}</div>
+    </div>
 
+    {{ form_row(formArtiste.image) }}
 
-{{form_row(formArtiste.image)}}
-<input type="submit", class="btn btn-success" value="valider">
+    <div class="row">
+        <div class="col">
+            <a href="{{ path('admin_artistes') }}" class="btn btn-warning btn-block">Annuler</a>
+        </div>
+        <div class="col">
+            <input type="submit" class="btn btn-success btn-block" value="Valider">
+        </div>
+    </div>
 
-
-
-
-
-
-
-{{form_end(formArtiste)}}
+    {{ form_end(formArtiste) }}
 {% endblock %}
