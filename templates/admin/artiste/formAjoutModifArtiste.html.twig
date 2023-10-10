@@ -3,7 +3,13 @@
 {% block title %}Ajout Artiste !{% endblock %}
 
 {% block body %}
-    <h1 class="pt-2 text-center">Ajout d'un Artiste</h1>
+    <h1 class="pt-2 text-center">
+    {% if (app.request.attributes.get('_route')=="admin_artiste_ajout") %}
+        Ajout
+        {% else %}
+        Modification
+    {% endif %}
+     d'un Artiste</h1>
 
     {{ form_start(formArtiste) }}
 
@@ -22,8 +28,12 @@
             <a href="{{ path('admin_artistes') }}" class="btn btn-warning btn-block">Annuler</a>
         </div>
         <div class="col">
-            <input type="submit" class="btn btn-success btn-block" value="Valider">
-        </div>
+            <input type="submit" class="btn btn-success btn-block" value=
+                {% if (app.request.attributes.get('_route')=="admin_artiste_ajout") %}
+       " Ajouter L'artiste"
+        {% else %}
+       " Modifier L'artiste"
+    {% endif %} =""></div>
     </div>
 
     {{ form_end(formArtiste) }}
