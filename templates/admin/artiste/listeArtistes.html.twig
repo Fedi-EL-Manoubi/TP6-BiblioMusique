@@ -4,7 +4,7 @@
 
 {% block body %}
 <h1 class="pt-2 text-center">Gestion des Artistes </h1>
-<a href="" class="btn btn-primary"> Ajouter un Artiste</a>
+<a href="{{path("admin_artiste_ajout")}}" class="btn btn-primary"> Ajouter un Artiste</a>
 
 <hr>
   <thead>
@@ -48,8 +48,6 @@
     <div class="d-flex justify-content-center">
         {{ knp_pagination_render(lesArtistes) }}
     </div>
-
-
 
 
 </div>
