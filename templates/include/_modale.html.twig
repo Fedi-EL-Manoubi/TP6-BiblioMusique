@@ -1,19 +1,33 @@
-<div class="modalSimple">
+<div id="modalSimple" class="modal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
+        <h5 class="modal-title"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
+      <div class="modal-body"></div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <a id="btn-action" href="" class="btn btn-primary">Supprimé</a>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
+      
     </div>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $("a[data-lien]").click(function() {
+    let lien = $(this).data("lien");
+    let titre = $(this).data("titre");
+    let message = $(this).data("message");
+    let libelleBouton = $(this).data("libelleBouton");
+
+    $("#btn-action").attr("href", lien);
+    $(".modal-title").text(titre);
+    $(".modal-body").text(message);
+    $("#btn-action").text(libelleBouton);
+  });
+</script>

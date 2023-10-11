@@ -3,52 +3,73 @@
 {% block title %}GESTION ARTISTES !{% endblock %}
 
 {% block body %}
-<h1 class="pt-2 text-center">Gestion des Artistes </h1>
-<a href="{{path("admin_artiste_ajout")}}" class="btn btn-primary"> Ajouter un Artiste</a>
+<h1 class="pt-2 text-center">Gestion des Artistes</h1>
+<a href="{{ path("admin_artiste_ajout") }}" class="btn btn-primary">Ajouter un Artiste</a>
 
 <hr>
-  <thead>
-    <tr>
-    <table class="table table-hover">
-      <th scope="col-1"></th>
-      <th scope="col-2">Nom</th>
-      <th scope="col-7">Detail</th>
-      <th scope="col-2">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
 
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col-1"></th>
+            <th scope="col-2">Nom</th>
+            <th scope="col-7">Détail</th>
+            <th scope="col-2">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
         {% for leArtiste in lesArtistes %}
-            {% set nbAlbums  = leArtiste.albums|length %}
+            {% set nbAlbums = leArtiste.albums|length %}
             <tr>
-            <td class="col-1"><img class="avatar mx-auto d-block " style="height:auto; width: 100px 100%; display: block;" src=" {{leArtiste.image}} " alt="Card image"></td>
-            <td class="col-2">{{leArtiste.nom}}</td>
-            <td class="col-7">
-            <p class= "d-flex flex-row"> 
-                <span class="align-self-center badge badge-success"> {{nbAlbums}}{% if nbAlbums> 1 %}    albums {% else %} album {% endif %} </span>
-                <span class="align-self-center mx-3"> {% if leArtiste.type == 0 %}  Artiste solo {% else %} Groupe{% endif %} </span>
-                <span class="align-self-center ml-auto"> {{leArtiste.site}} </span>
-            </p>
-            <p>
-            {{leArtiste.description|slice(0,100)|raw}}... 
-            </p>
-            </td>
-            <td class="col-2">
-                <a href="{{path('admin_artiste_modif', {'id': leArtiste.id})}}" class="btn btn-primary" ><i class="fas fa-pen"></i> </a>
-            <button type="button" class="btn btn-danger" data-toggle="modalSimple" data-target="#exampleModal"><i class="far fa-trash-alt"></i>
+                <td class="col-1">
+                    <img class="avatar mx-auto d-block" style="max-width: 100%;" src="{{ leArtiste.image }}" alt="Card image">
+                </td>
+                <td class="col-2">{{ leArtiste.nom }}</td>
+                <td class="col-7">
+                    <p class="d-flex flex-row">
+                        <span class="align-self-center badge badge-success">
+                            {{ nbAlbums }} {{ nbAlbums > 1 ? 'albums' : 'album' }}
+                        </span>
+                        <span class="align-self-center mx-3">
+                            {% if leArtiste.type == 0 %}
+                                Artiste solo
+                            {% else %}
+                                Groupe
+                            {% endif %}
+                        </span>
+                        <span class="align-self-center ml-auto">{{ leArtiste.site }}</span>
+                    </p>
+                    <p>
+                        {{ leArtiste.description|slice(0, 100)|raw }}...
+                    </p>
+                </td>
+<td>
+    <a href="{{ path('admin_artiste_modif', {'id': leArtiste.id}) }}" class="btn btn-primary">
+        <i class="fas fa-pen"></i> Modifier
+    </a>
+</td>
+<td>
+    <a class="btn btn-danger"
+       data-toggle="modal"
+       data-target="#modalSimple"
+       data-titre="Suppression d'un artiste"
+       data-message="Êtes-vous sûr de vouloir supprimer l'artiste : {{ leArtiste.nom }}"
+       data-libelleBouton="Supprimer l'artiste"
+       data-lien="{{ path('admin_artiste_suppression', {'id': leArtiste.id}) }}"
+       ><i class="far fa-trash-alt"></i> Supprimer </a>
+</td>
 
-            </button>
-            </td>
+
             </tr>
         {% endfor %}
-  </tbody>
+    </tbody>
 </table>
 
-
-    <div class="d-flex justify-content-center">
-        {{ knp_pagination_render(lesArtistes) }}
-    </div>
-
-
+<div class="d-flex justify-content-center">
+    {{ knp_pagination_render(lesArtistes) }}
 </div>
+{% endblock %}
+
+{% block javascript %}
+{% include "include/_modale.html.twig" %}
 {% endblock %}

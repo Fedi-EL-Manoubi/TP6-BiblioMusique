@@ -54,8 +54,27 @@ class ArtisteController extends AbstractController
             }
             return $this->render('admin/artiste/formAjoutmodifArtiste.html.twig', [
             'formArtiste' => $form->createView()
+            
         ]);
 
     }
+     /**
+     * @Route("/admin/artiste/suppression/{id}", name="admin_artiste_suppression", methods={"GET"})
+     */
+    public function suppressionArtiste(Artiste $artiste, EntityManagerInterface $manager)
+    {
+                $nbAlbums=$artiste->getAlbums()->count();
+                if($nbAlbums>0){
+                    $this->addFlash("danger","Vous ne pouvez pas supprimer l'artiste car $nbAlbums albums sont associés");
+   
+                }else{            
+                    $manager->remove($artiste);
+                    $manager->flush();
+                    $this->addFlash("success","L'artiste a bien été supprimé");
+                
+                }
 
+                return $this->redirectToRoute('admin_artistes');
+
+     }
 }
