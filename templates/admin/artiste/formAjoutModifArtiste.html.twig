@@ -11,7 +11,7 @@
     {% endif %}
      d'un Artiste</h1>
 
-    {{ form_start(formArtiste) }}
+    {{ form_start(formArtiste,{'attr':{'novalidate':'novalidate'}}) }}
 
     {{ form_row(formArtiste.nom) }}
     {{ form_row(formArtiste.description) }}

@@ -25,7 +25,10 @@ class ArtisteType extends AbstractType
             ])
             ->add('description', TextareaType::class)
             ->add('site', UrlType::class)
-            ->add('image',TextType::class)
+            ->add('image',TextType::class,[
+                'required' => false 
+
+            ])
             ->add('type', ChoiceType::class, [
 
                 "choices"=>[
