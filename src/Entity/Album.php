@@ -50,6 +50,11 @@ class Album
      */
     private $styles;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Label::class, inversedBy="albums")
+     */
+    private $label;
+
     public function __construct()
     {
         $this->morceaux = new ArrayCollection();
@@ -167,6 +172,18 @@ class Album
         if ($this->styles->removeElement($style)) {
             $style->removeAlbum($this);
         }
+
+        return $this;
+    }
+
+    public function getLabel(): ?Label
+    {
+        return $this->label;
+    }
+
+    public function setLabel(?Label $label): self
+    {
+        $this->label = $label;
 
         return $this;
     }

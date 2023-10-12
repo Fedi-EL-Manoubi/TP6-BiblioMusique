@@ -4,13 +4,14 @@ namespace App\DataFixtures;
 
 use fr;
 use Faker\Factory;
+use App\Entity\Label;
 use App\Entity\Album;
 use App\Entity\Style;
 use App\Entity\Artiste;
 use App\Entity\Morceau;
 use Doctrine\Persistence\ObjectManager;
-
 use Doctrine\Bundle\FixturesBundle\Fixture;
+
 use function Symfony\Component\DependencyInjection\Loader\Configurator\ref;
 
 class AppFixtures extends Fixture
@@ -82,3 +83,5 @@ $genres=["men","women"];
     }
     
 }
+
+

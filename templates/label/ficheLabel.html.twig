@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche Label !{% endblock %}
+
+{% block body %}
+<h1 class="pt-2 text-center">Fiche du Label </h1>
+<hr>
+<div class="row pt-2">
+
+    {% set nbAlbums  = leLabel.albums|length %}
+    {%set nbAlbums = 1%}
+
+        <div class="card mb-3">
+        <h3 class="card-header">  {{leLabel.nom}} </h3>
+        <div class="row">
+            <div class="col-3 d-flex align-items-center mx-auto">  
+            <img class="avatar mx-auto d-block " style="height:auto; width: 200px 100%; display: block;" src=" {{leLabel.logo}} " alt="Card image">
+             </div>
+            <div class="col">
+        <div class="card-body">
+            <h5 class="card-title">
+                <a href="" class="badge badge-success"> {{nbAlbums}}  {% if nbAlbums> 1 %}    albums {% else %} album {% endif %}</a> 
+        <div class="card-body">
+            <p class="card-text"> {{leLabel.description|raw}} </p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"> {% if leLabel.type == 0 %}  Artiste solo {% else %} Groupe{% endif %} </li>
+            {# <li class="list-group-item"> <a href="{{leLabel.site}}">Son Site Web </a> </li> #}
+                </ul>
+            </div>
+        </div>
+    </h5> 
+</div>
+
+         </div>
+    </div>
+
+
+
+
+<table class="table table-hover mx-auto">
+  <thead>
+    <tr>
+      <th scope="col-3">Photo</th>
+      <th scope="col-4"> Nom</th>
+      <th scope="col-1"> Date</th>
+      <th scope="col-3"> Styles</th>
+      <th scope="col-1"> Morceaux</th>
+    </tr>
+  </thead>
+  {% for leAlbum in leLabel.albums %}
+    <tr class="table-primary">
+      <td> <img class="miniature" src=" {{leAlbum.image}}" alt=""></td>
+      <td scope="row"><a href=" {{path ('ficheLabel', {'id' : leAlbum.id})}} "> {{leAlbum.nom}} </a> </td>
+      <td> {{leAlbum.date}} </td>
+      <td>  </td>
+      <td> {{leAlbum.morceaux|length}} </td>
+        </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+            {% extends 'base.html.twig' %}
+
+            {% block title %}Liste des Labels{% endblock %}
+
+            {% block body %}
+            <h1 class="pt-2 text-center">Liste des Labels </h1>
+            <hr>
+            <div class="row pt-2">
+            {% for leLabel in lesLabels %}
+                {% set nbAlbums  = leLabel.albums|length %}
+                <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                    <div class="card mb-3">
+                    <h3 class="card-header"> <a href=" {{path('ficheLabel', {'id': leLabel.id})}} ">{{leLabel.nom}} </a>  </h3>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="" class="badge badge-success"> {{nbAlbums}}  {% if nbAlbums> 1 %}    albums {% else %} album {% endif %}</a> 
+                        </h5> 
+                        </div>
+                        <img class="avatar mx-auto d-block " style="height:auto; width: 200px 100%; display: block;" src=" {{leLabel.logo}} " alt="Card image">
+            
+                    
+                    <div class="card-body">
+                        <p class="card-text"> {{leLabel.description|slice(0,200)|raw}}... </p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> {% if leLabel.type == "Indépendant" %}
+                            <a href="" class="badge badge-success">{{leLabel.type}}</a>
+                            {% else %} <a href="" class="badge badge-danger">{{leLabel.type}}</a> {% endif %}</li>
+                        
+                    </ul>
+                    <div class="card-body">
+                        <a href="#" class="card-link">Card link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        5 days ago
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+
+            </div>
+            {% endblock %}
