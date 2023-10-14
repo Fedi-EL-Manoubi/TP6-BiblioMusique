@@ -30,4 +30,23 @@ class LabelController extends AbstractController
             'leLabel' => $label
         ]);
     }
+    /**
+     *  @Route("/label/ Label ", name="label", methods={"GET"}) POST  "/{ 
+     */   
+    public function ajouterLabel(Label $label, LabelRepository $repo) 
+    {
+        $label->setLibelle($label->getLibelle()); 
+        $repo->save($label); 
+         return $this->redirectToRoute('listeLabel');
+    }   
+    /**
+     * @Route("/label/{id}", name="modifierLabel", methods={"GET"})
+     */
+    public function modifierLabel(Label $label, LabelRepository $repo)
+    {
+        return $this->render('label/modifierLabel.html.twig', [
+            'leLabel' => $label
+        ]);
+    }
+
 }
